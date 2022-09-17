@@ -70,6 +70,19 @@ public class App {
     System.out.println("jsonNode2: " + jsonNode2);
     System.out.println("/ccc/fff: " + jsonNode2.at("/ccc/fff").asInt());
 
+    String json3 = "{\"xx\": {\"mm\": {\"mm01\": {\"kk\": true}, \"mm02\": {\"nn\": true}, \"mm03\": {}}}}";
+    JsonNode jsonNode3 = objectMapper.readTree(json3);
+    System.out.println("jsonNode3: " + jsonNode3);
+    System.out.println("/xx/mm: " + jsonNode3.at("/xx/mm"));
+    JsonNode aliases = null;
+    Iterator<Map.Entry<String, JsonNode>> iterator = jsonNode3.at("/xx/mm").fields();
+    while (iterator.hasNext()) {
+      Map.Entry<String, JsonNode> entry = iterator.next();
+      entry.getValue().fields().
+      System.out.println("name:" + entry.getKey() + " " + entry.getKey() + " " + entry.getValue());
+    }
+
+
 //    System.out.println("==============================");
 //    int numbersArray[] = {2, 5, 7, 12, 8, 4, 11, 16, 19, 14, 9};
 //    System.out.println(arrayToList(numbersArray));
